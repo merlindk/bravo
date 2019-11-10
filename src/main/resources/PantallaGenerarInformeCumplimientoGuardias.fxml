@@ -3,9 +3,9 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.CheckListView?>
 
 <AnchorPane prefHeight="657.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dsi.bravo.pantallas.PantallaGenerarInformeCumplimientoGuardias">
    <children>
@@ -16,7 +16,7 @@
       </Label>
       <AnchorPane layoutX="18.0" layoutY="237.0" prefHeight="330.0" prefWidth="566.0">
          <children>
-            <TableView fx:id="tblSelBomberos" disable="true" layoutX="6.0" prefHeight="330.0" prefWidth="566.0" visible="false" />
+            <CheckListView fx:id="tblSelBomberos" disable="true" layoutX="6.0" prefHeight="330.0" prefWidth="566.0" visible="false" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="30.0" layoutY="76.0" prefHeight="161.0" prefWidth="541.0">
@@ -28,5 +28,6 @@
             <Button fx:id="btnSelFechas" layoutX="213.0" layoutY="88.0" mnemonicParsing="false" onAction="#seleccionarFechas" text="Seleccionar Fechas" />
          </children>
       </AnchorPane>
+      <Button fx:id="btnGenerarReporte" layoutX="252.0" layoutY="567.0" mnemonicParsing="false" onAction="#generarReporte" text="Generar Reporte" />
    </children>
 </AnchorPane>

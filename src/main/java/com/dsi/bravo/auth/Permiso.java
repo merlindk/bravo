@@ -7,14 +7,10 @@ package com.dsi.bravo.auth;
  */
 public class Permiso {
 
-	private int descripcion;
-	private int nombre;
+    private int descripcion;
+    private int nombre;
 
-	public Permiso(){
+    public Permiso() {
 
-	}
-
-	public void finalize() throws Throwable {
-
-	}
+    }
 }//end Permiso

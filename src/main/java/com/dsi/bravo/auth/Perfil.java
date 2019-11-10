@@ -7,18 +7,15 @@ package com.dsi.bravo.auth;
  */
 public class Perfil {
 
-	private int descripcion;
-	private int nombre;
-	public Permiso permiso;
+    public Permiso permiso;
+    private int descripcion;
+    private int nombre;
 
-	public Perfil(){
+    public Perfil() {
 
-	}
+    }
 
-	public void finalize() throws Throwable {
-
-	}
-	public Permiso getPermisos(){
-		return null;
-	}
+    public Permiso getPermisos() {
+        return null;
+    }
 }//end Perfil

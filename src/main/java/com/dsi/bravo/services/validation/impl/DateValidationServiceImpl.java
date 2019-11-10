@@ -8,7 +8,7 @@ import java.time.LocalDate;
 @Service
 public class DateValidationServiceImpl implements DateValidationService {
 
-    public boolean validate(LocalDate fechaDesde, LocalDate fechaHasta){
+    public boolean validate(LocalDate fechaDesde, LocalDate fechaHasta) {
         return fechaDesde.isBefore(fechaHasta);
     }
 }

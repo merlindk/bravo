@@ -1,7 +1,6 @@
 package com.dsi.bravo.negocio;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 /**
  * @author Merlin
@@ -10,63 +9,60 @@ import java.util.Date;
  */
 public class Convocatoria {
 
-	private boolean confirmo;
-	private LocalDateTime fechaHora;
-	private LocalDateTime fechaHoraRespuesta;
-	private Bombero bombero;
+    private boolean confirmo;
+    private LocalDateTime fechaHora;
+    private LocalDateTime fechaHoraRespuesta;
+    private Bombero bombero;
 
-	public Convocatoria(){
+    public Convocatoria() {
 
-	}
+    }
 
-	public void finalize() throws Throwable {
+    public void confirmarAsistencia() {
 
-	}
-	public void confirmarAsistencia(){
+    }
 
-	}
+    public boolean estaConfirmada() {
+        return confirmo;
+    }
 
-	public boolean estaConfirmada(){
-		return confirmo;
-	}
+    public void estaEnFecha() {
 
-	public void estaEnFecha(){
+    }
 
-	}
+    public void estaEnPeriodo() {
 
-	public void estaEnPeriodo(){
+    }
 
-	}
+    public Bombero getBombero() {
+        return bombero;
+    }
 
-	public Bombero getBombero(){
-		return bombero;
-	}
+    public void setBombero(Bombero bombero) {
+        this.bombero = bombero;
+    }
 
-	public boolean isConfirmo() {
-		return confirmo;
-	}
+    public boolean isConfirmo() {
+        return confirmo;
+    }
 
-	public void setConfirmo(boolean confirmo) {
-		this.confirmo = confirmo;
-	}
+    public void setConfirmo(boolean confirmo) {
+        this.confirmo = confirmo;
+    }
 
-	public LocalDateTime getFechaHora() {
-		return fechaHora;
-	}
+    public LocalDateTime getFechaHora() {
+        return fechaHora;
+    }
 
-	public void setFechaHora(LocalDateTime fechaHora) {
-		this.fechaHora = fechaHora;
-	}
+    public void setFechaHora(LocalDateTime fechaHora) {
+        this.fechaHora = fechaHora;
+    }
 
-	public LocalDateTime getFechaHoraRespuesta() {
-		return fechaHoraRespuesta;
-	}
+    public LocalDateTime getFechaHoraRespuesta() {
+        return fechaHoraRespuesta;
+    }
 
-	public void setFechaHoraRespuesta(LocalDateTime fechaHoraRespuesta) {
-		this.fechaHoraRespuesta = fechaHoraRespuesta;
-	}
-
-	public void setBombero(Bombero bombero) {
-		this.bombero = bombero;
-	}
+    public void setFechaHoraRespuesta(LocalDateTime fechaHoraRespuesta) {
+        this.fechaHoraRespuesta = fechaHoraRespuesta;
+    }
 }//end Convocatoria

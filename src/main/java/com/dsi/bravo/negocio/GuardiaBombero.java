@@ -1,7 +1,6 @@
 package com.dsi.bravo.negocio;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 /**
  * @author Merlin
@@ -10,140 +9,137 @@ import java.util.Date;
  */
 public class GuardiaBombero {
 
-	private LocalDateTime horaDesde;
-	private LocalDateTime horaHasta;
-	private String motivoRechazo;
-	private Bombero bombero;
-	private LocalDateTime diaSemana;
-	private DetencionGuardia detencionGuardia;
-	private Estado estado;
-	private TipoGuardia tipoGuardia;
-	private DetalleGuardiaBombero detalleGuardiaBombero;
+    private LocalDateTime horaDesde;
+    private LocalDateTime horaHasta;
+    private String motivoRechazo;
+    private Bombero bombero;
+    private LocalDateTime diaSemana;
+    private DetencionGuardia detencionGuardia;
+    private Estado estado;
+    private TipoGuardia tipoGuardia;
+    private DetalleGuardiaBombero detalleGuardiaBombero;
 
-	public GuardiaBombero(){
+    public GuardiaBombero() {
 
-	}
+    }
 
-	public LocalDateTime getHoraDesde() {
-		return horaDesde;
-	}
+    public LocalDateTime getHoraDesde() {
+        return horaDesde;
+    }
 
-	public void setHoraDesde(LocalDateTime horaDesde) {
-		this.horaDesde = horaDesde;
-	}
+    public void setHoraDesde(LocalDateTime horaDesde) {
+        this.horaDesde = horaDesde;
+    }
 
-	public LocalDateTime getHoraHasta() {
-		return horaHasta;
-	}
+    public LocalDateTime getHoraHasta() {
+        return horaHasta;
+    }
 
-	public void setHoraHasta(LocalDateTime horaHasta) {
-		this.horaHasta = horaHasta;
-	}
+    public void setHoraHasta(LocalDateTime horaHasta) {
+        this.horaHasta = horaHasta;
+    }
 
-	public String getMotivoRechazo() {
-		return motivoRechazo;
-	}
+    public String getMotivoRechazo() {
+        return motivoRechazo;
+    }
 
-	public void setMotivoRechazo(String motivoRechazo) {
-		this.motivoRechazo = motivoRechazo;
-	}
+    public void setMotivoRechazo(String motivoRechazo) {
+        this.motivoRechazo = motivoRechazo;
+    }
 
-	public Bombero getBombero() {
-		return bombero;
-	}
+    public Bombero getBombero() {
+        return bombero;
+    }
 
-	public void setBombero(Bombero bombero) {
-		this.bombero = bombero;
-	}
+    public void setBombero(Bombero bombero) {
+        this.bombero = bombero;
+    }
 
-	public LocalDateTime getDiaSemana() {
-		return diaSemana;
-	}
+    public LocalDateTime getDiaSemana() {
+        return diaSemana;
+    }
 
-	public void setDiaSemana(LocalDateTime diaSemana) {
-		this.diaSemana = diaSemana;
-	}
+    public void setDiaSemana(LocalDateTime diaSemana) {
+        this.diaSemana = diaSemana;
+    }
 
-	public DetencionGuardia getDetencionGuardia() {
-		return detencionGuardia;
-	}
+    public DetencionGuardia getDetencionGuardia() {
+        return detencionGuardia;
+    }
 
-	public void setDetencionGuardia(DetencionGuardia detencionGuardia) {
-		this.detencionGuardia = detencionGuardia;
-	}
+    public void setDetencionGuardia(DetencionGuardia detencionGuardia) {
+        this.detencionGuardia = detencionGuardia;
+    }
 
-	public Estado getEstado() {
-		return estado;
-	}
+    public Estado getEstado() {
+        return estado;
+    }
 
-	public void setEstado(Estado estado) {
-		this.estado = estado;
-	}
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
 
-	public TipoGuardia getTipoGuardia() {
-		return tipoGuardia;
-	}
+    public TipoGuardia getTipoGuardia() {
+        return tipoGuardia;
+    }
 
-	public void setTipoGuardia(TipoGuardia tipoGuardia) {
-		this.tipoGuardia = tipoGuardia;
-	}
+    public void setTipoGuardia(TipoGuardia tipoGuardia) {
+        this.tipoGuardia = tipoGuardia;
+    }
 
-	public DetalleGuardiaBombero getDetalleGuardiaBombero() {
-		return detalleGuardiaBombero;
-	}
+    public DetalleGuardiaBombero getDetalleGuardiaBombero() {
+        return detalleGuardiaBombero;
+    }
 
-	public void setDetalleGuardiaBombero(DetalleGuardiaBombero detalleGuardiaBombero) {
-		this.detalleGuardiaBombero = detalleGuardiaBombero;
-	}
+    public void setDetalleGuardiaBombero(DetalleGuardiaBombero detalleGuardiaBombero) {
+        this.detalleGuardiaBombero = detalleGuardiaBombero;
+    }
 
-	public void finalize() throws Throwable {
+    public void cancelar() {
 
-	}
-	public void cancelar(){
+    }
 
-	}
+    public void confirmar() {
 
-	public void confirmar(){
+    }
 
-	}
+    public void controlar() {
 
-	public void controlar(){
+    }
 
-	}
+    public void detener() {
 
-	public void detener(){
+    }
 
-	}
+    public void esDeBombero() {
 
-	public void esDeBombero(){
+    }
 
-	}
+    public void esEstadoEnCurso() {
 
-	public void esEstadoEnCurso(){
+    }
 
-	}
+    public void finalizar() {
 
-	public void finalizar(){
+    }
 
-	}
+    public void iniciar() {
 
-	public void iniciar(){
+    }
 
-	}
+    public String mostrarDatos() {
+        return null;
+    }
 
-	public String mostrarDatos(){
-		return null;
-	}
+    public void reanudar() {
 
-	public void reanudar(){
+    }
 
-	}
+    public void rechazar() {
 
-	public void rechazar(){
+    }
 
-	}
+    public void validar() {
 
-	public void validar(){
-
-	}
+    }
 }//end GuardiaBombero

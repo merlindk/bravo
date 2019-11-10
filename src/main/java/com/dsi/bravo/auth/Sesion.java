@@ -7,22 +7,19 @@ package com.dsi.bravo.auth;
  */
 public class Sesion {
 
-	private int fechaDesde;
-	private int fechaHasta;
-	public Usuario m_Usuario;
+    public Usuario m_Usuario;
+    private int fechaDesde;
+    private int fechaHasta;
 
-	public Sesion(){
+    public Sesion() {
 
-	}
+    }
 
-	public void finalize() throws Throwable {
+    public Usuario getUsuario() {
+        return null;
+    }
 
-	}
-	public Usuario getUsuario(){
-		return null;
-	}
+    public void obtenerNombreUsuario() {
 
-	public void obtenerNombreUsuario(){
-
-	}
+    }
 }//end Sesion

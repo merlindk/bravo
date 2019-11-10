@@ -1,7 +1,5 @@
 package com.dsi.bravo.negocio;
 
-import java.time.LocalDateTime;
-
 public class Disponibilidad {
 
     private String fechaFinVigencia;
@@ -39,10 +37,6 @@ public class Disponibilidad {
 
     public void setDetalleDisponibilidad(DetalleDisponibilidad detalleDisponibilidad) {
         this.detalleDisponibilidad = detalleDisponibilidad;
-    }
-
-    public void finalize() throws Throwable {
-
     }
 
     public void esHorarioValido() {

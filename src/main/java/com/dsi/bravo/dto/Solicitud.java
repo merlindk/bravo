@@ -3,30 +3,30 @@ package com.dsi.bravo.dto;
 import java.util.ArrayList;
 
 public class Solicitud {
-        private String fechaDesde;
-        private String fechaHasta;
-        ArrayList<Long> bomberos = new ArrayList <> ();
+    ArrayList<Long> bomberos = new ArrayList<>();
+    private String fechaDesde;
+    private String fechaHasta;
 
 
-        // Getter Methods
+    // Getter Methods
 
-        public String getFechaDesde() {
-            return fechaDesde;
-        }
+    public String getFechaDesde() {
+        return fechaDesde;
+    }
 
-        public String getFechaHasta() {
-            return fechaHasta;
-        }
+    public void setFechaDesde(String fechaDesde) {
+        this.fechaDesde = fechaDesde;
+    }
 
-        // Setter Methods
+    // Setter Methods
 
-        public void setFechaDesde(String fechaDesde) {
-            this.fechaDesde = fechaDesde;
-        }
+    public String getFechaHasta() {
+        return fechaHasta;
+    }
 
-        public void setFechaHasta(String fechaHasta) {
-            this.fechaHasta = fechaHasta;
-        }
+    public void setFechaHasta(String fechaHasta) {
+        this.fechaHasta = fechaHasta;
+    }
 
     public ArrayList<Long> getBomberos() {
         return bomberos;

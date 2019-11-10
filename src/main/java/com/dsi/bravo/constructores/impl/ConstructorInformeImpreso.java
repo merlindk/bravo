@@ -10,57 +10,51 @@ import java.util.Date;
  * This class (a) constructs and assembles parts of the product by implementing
  * the Builder interface, (b) defines and keeps track of the representation it
  * creates, and (c) provides an interface for retrieving the product.
+ *
  * @author matia
  * @version 1.0
  * @created 04-Nov-2019 10:30:17 PM
  */
 public class ConstructorInformeImpreso implements IConstructorInformeGuardias {
 
-	public ConstructorInformeImpreso(){
+    public ConstructorInformeImpreso() {
 
-	}
+    }
 
-	public void finalize() throws Throwable {
+    public void agregarBombero() {
 
-	}
+    }
 
-	public void agregarBombero(){
+    /**
+     * @param cumpimientoGuardia
+     */
+    public void construirCuerpo(String[][] cumpimientoGuardia) {
 
-	}
+    }
 
-	/**
-	 * 
-	 * @param cumpimientoGuardia
-	 */
-	public void construirCuerpo(String[][] cumpimientoGuardia){
+    /**
+     * @param fechaInicio
+     * @param fechaFin
+     */
+    public void construirEncabezado(Date fechaInicio, Date fechaFin) {
 
-	}
+    }
 
-	/**
-	 * 
-	 * @param fechaInicio
-	 * @param fechaFin
-	 */
-	public void construirEncabezado(Date fechaInicio, Date fechaFin){
+    public void construirInforme() {
 
-	}
+    }
 
-	public void construirInforme(){
+    /**
+     * @param usuario
+     * @param fechaHora
+     */
+    public void construirPie(String usuario, Date fechaHora) {
 
-	}
+    }
 
-	/**
-	 * 
-	 * @param usuario
-	 * @param fechaHora
-	 */
-	public void construirPie(String usuario, Date fechaHora){
+    public InformeImpreso obtenerResultado() {
+        //return product;
 
-	}
-
-	public InformeImpreso obtenerResultado(){
-		//return product;
-
-		return null;
-	}
+        return null;
+    }
 }//end ConstructorInformeImpreso

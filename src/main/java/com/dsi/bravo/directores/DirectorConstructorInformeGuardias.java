@@ -24,10 +24,6 @@ public class DirectorConstructorInformeGuardias {
 
     }
 
-    public void finalize() throws Throwable {
-
-    }
-
     /**
      * @param fechaInicio
      * @param fechaFin

@@ -7,23 +7,20 @@ package com.dsi.bravo.auth;
  */
 public class Usuario {
 
-	private int contraseña;
-	private int fechaAlta;
-	private int nombre;
-	public Perfil perfil;
+    public Perfil perfil;
+    private int contraseña;
+    private int fechaAlta;
+    private int nombre;
 
-	public Usuario(){
+    public Usuario() {
 
-	}
+    }
 
-	public void finalize() throws Throwable {
+    public void getNombre() {
 
-	}
-	public void getNombre(){
+    }
 
-	}
+    public void getPerfil() {
 
-	public void getPerfil(){
-
-	}
+    }
 }//end Usuario

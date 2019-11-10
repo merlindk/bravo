@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 @Service
 public class DateFormatterImpl implements DateFormatter {
 
-    public LocalDate formatString(String fecha){
+    public LocalDate formatString(String fecha) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyyy");
 
         return LocalDate.parse(fecha, formatter);
