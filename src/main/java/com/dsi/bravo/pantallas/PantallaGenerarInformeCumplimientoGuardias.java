@@ -6,6 +6,7 @@ import com.dsi.bravo.soporte.Row;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -14,10 +15,12 @@ import org.controlsfx.control.CheckListView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.net.URL;
 import java.util.List;
+import java.util.ResourceBundle;
 
 @Component
-public class PantallaGenerarInformeCumplimientoGuardias {
+public class PantallaGenerarInformeCumplimientoGuardias implements Initializable {
 
     public CheckListView<Row> tblSelBomberos;
     public DatePicker selFechaDesde;
@@ -26,6 +29,11 @@ public class PantallaGenerarInformeCumplimientoGuardias {
     private GestorGenerarInformeCumplimientoGuardias gestorGenerarInformeCumplimientoGuardias;
     private AyudantePantalla ayudantePantalla;
     private ObservableList<Row> listaBomberos = FXCollections.observableArrayList();
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        tblSelBomberos.setItems(listaBomberos);
+    }
 
     public void seleccionarFechas(ActionEvent actionEvent) {
 
@@ -39,7 +47,7 @@ public class PantallaGenerarInformeCumplimientoGuardias {
 
         //Populamos los componentes visuales
         ayudantePantalla.prepareListView(tblSelBomberos);
-        tblSelBomberos.setItems(listaBomberos);
+        listaBomberos.clear();
         listaBomberos.addAll(filasBomberos);
 
         tblSelBomberos.setDisable(false);
