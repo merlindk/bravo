@@ -13,9 +13,6 @@ public class ImpresoraPDF {
 
     }
 
-    public void finalize() throws Throwable {
-
-    }
 
     /**
      * @param informe

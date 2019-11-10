@@ -16,13 +16,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.ResourceBundle;
 
 @Component
 public class PantallaGenerarInformeCumplimientoGuardias implements Initializable {
 
-    public CheckListView<Row> tblSelBomberos;
+    public CheckListView<Row> chckTblBomberos;
     public DatePicker selFechaDesde;
     public DatePicker selFechaHasta;
     public Button btnSelFechas;
@@ -32,7 +34,7 @@ public class PantallaGenerarInformeCumplimientoGuardias implements Initializable
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        tblSelBomberos.setItems(listaBomberos);
+        chckTblBomberos.setItems(listaBomberos);
     }
 
     public void seleccionarFechas(ActionEvent actionEvent) {
@@ -40,18 +42,19 @@ public class PantallaGenerarInformeCumplimientoGuardias implements Initializable
         //Solicitamos al gestor que valide las fechas y las almacene
         if (!gestorGenerarInformeCumplimientoGuardias.tomarSeleccionFechas(selFechaDesde.getValue(), selFechaHasta.getValue())) {
             mostrarAlerta("Las fechas son incorrectas");
+            return;
         }
 
         //Solicitamos al gestor la lista de bomberos activos
         List<Row> filasBomberos = gestorGenerarInformeCumplimientoGuardias.consultarBomberosActivos();
 
         //Populamos los componentes visuales
-        ayudantePantalla.prepareListView(tblSelBomberos);
+        ayudantePantalla.prepareListView(chckTblBomberos);
         listaBomberos.clear();
         listaBomberos.addAll(filasBomberos);
 
-        tblSelBomberos.setDisable(false);
-        tblSelBomberos.setVisible(true);
+        chckTblBomberos.setDisable(false);
+        chckTblBomberos.setVisible(true);
 
     }
 
@@ -61,7 +64,10 @@ public class PantallaGenerarInformeCumplimientoGuardias implements Initializable
     }
 
     public void generarReporte(ActionEvent actionEvent) {
-        tblSelBomberos.getCheckModel().getCheckedIndices();
+        Collection<Integer> checkeadosIndexes = chckTblBomberos.getCheckModel().getCheckedIndices();
+        List<String> dniList = new ArrayList<String>();
+        checkeadosIndexes.forEach((i) -> dniList.add(chckTblBomberos.getCheckModel().getItem(i).getColumnaDNI()));
+        gestorGenerarInformeCumplimientoGuardias.tomarBomberosSeleccionados(dniList);
     }
 
     @Autowired

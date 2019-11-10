@@ -8,5 +8,5 @@ public interface DatabaseService {
 
     List<Bombero> getAllBomberosActivos();
 
-    List<Bombero> getBomberosFromList(List<Long> bomberosSeleccionados);
+    List<Bombero> getBomberosFromList(List<String> bomberosSeleccionados);
 }

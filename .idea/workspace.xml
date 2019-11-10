@@ -2,9 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="35c472e3-af31-4316-ae4c-6eca1f5bbcc2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bomberos.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/bravo/dto/Solicitud.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/bravo/externos/ImpresoraPDF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/bravo/externos/ImpresoraPDF.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/bravo/gestores/GestorGenerarInformeCumplimientoGuardias.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/bravo/gestores/GestorGenerarInformeCumplimientoGuardias.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/bravo/pantallas/PantallaGenerarInformeCumplimientoGuardias.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/bravo/pantallas/PantallaGenerarInformeCumplimientoGuardias.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/bravo/pantallas/ayudantes/AyudantePantalla.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/bravo/pantallas/ayudantes/AyudantePantalla.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/bravo/services/format/DateFormatter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/bravo/services/format/impl/DateFormatterImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/bravo/services/persistance/DatabaseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/bravo/services/persistance/DatabaseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/bravo/services/persistance/impl/DatabaseServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/bravo/services/persistance/impl/DatabaseServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/bravo/services/validation/DateValidationService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/bravo/services/validation/impl/DateValidationServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dsi/bravo/soporte/Row.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dsi/bravo/soporte/Row.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/PantallaGenerarInformeCumplimientoGuardias.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/PantallaGenerarInformeCumplimientoGuardias.fxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -103,7 +114,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
   </component>
   <component name="RecentsManager">
     <key name="ImportMappingsDialog.RecentPackages">
@@ -145,8 +156,16 @@
       <workItem from="1573149993641" duration="14363000" />
       <workItem from="1573251656934" duration="2397000" />
       <workItem from="1573409113332" duration="498000" />
-      <workItem from="1573410430368" duration="322000" />
+      <workItem from="1573410430368" duration="6772000" />
     </task>
+    <task id="LOCAL-00001" summary="Bug-fix, clear table before add">
+      <created>1573410821436</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1573410821436</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -162,6 +181,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Bug-fix, clear table before add" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug-fix, clear table before add" />
   </component>
   <component name="masterDetails">
     <states>

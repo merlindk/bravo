@@ -14,7 +14,7 @@ public class AyudantePantalla {
             public void updateItem(Row bombero, boolean empty) {
                 super.updateItem(bombero, empty);
                 if (bombero != null) {
-                    setText(bombero.getColumna1() + " " + bombero.getColumna2() + " " + bombero.getColumna3());
+                    setText(bombero.getColumnaDNI() + " " + bombero.getColumnaNombre() + " " + bombero.getColumnaApellido());
                 } else {
                     setText("");
                 }
