@@ -14,8 +14,11 @@ public class Convocatoria {
     private LocalDateTime fechaHoraRespuesta;
     private Bombero bombero;
 
-    public Convocatoria() {
-
+    public Convocatoria(boolean confirmo, LocalDateTime fechaHora, LocalDateTime fechaHoraRespuesta, Bombero bombero) {
+        this.confirmo = confirmo;
+        this.fechaHora = fechaHora;
+        this.fechaHoraRespuesta = fechaHoraRespuesta;
+        this.bombero = bombero;
     }
 
     public void confirmarAsistencia() {

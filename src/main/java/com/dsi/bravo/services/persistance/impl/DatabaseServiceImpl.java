@@ -3,6 +3,7 @@ package com.dsi.bravo.services.persistance.impl;
 import com.dsi.bravo.auth.Usuario;
 import com.dsi.bravo.negocio.Asistencia;
 import com.dsi.bravo.negocio.Bombero;
+import com.dsi.bravo.negocio.Convocatoria;
 import com.dsi.bravo.negocio.Rol;
 import com.dsi.bravo.services.persistance.DatabaseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,14 +12,12 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 @Service
 public class DatabaseServiceImpl implements DatabaseService {
 
+    private List<Convocatoria> convocatorias = new ArrayList<>();
     private List<Bombero> bomberos = new ArrayList<>();
 
     @Autowired
@@ -38,26 +37,22 @@ public class DatabaseServiceImpl implements DatabaseService {
                     Arrays.asList(new Asistencia(LocalDateTime.parse(campos[9]), LocalDateTime.parse(campos[10]))));
             bomberos.add(bombero);
         }
-/*        Bombero bombero1 = new Bombero(true, "Nuñez", "Av Siempre viva 123", 35676585,
-                "tiorrico11@gmail.com", LocalDateTime.parse("1991-01-25T06:30:00"), "Merlin", "03541330188",
-                new Usuario(), new Rol("Jefe de Bomberos"), Arrays.asList(), Arrays.asList(new Asistencia(LocalDateTime.parse("2019-10-20T06:30:00"), LocalDateTime.parse("2019-10-20T17:30:00"))));
-
-        Bombero bombero2 = new Bombero(true, "Gimenez", "Av Siempre viva 123", 31675521,
-                "tiorrico11@gmail.com", LocalDateTime.parse("1991-01-25T06:30:00"), "Roberto", "03541330188",
-                new Usuario(), new Rol("Jefe de Bomberos"), Arrays.asList(), Arrays.asList(new Asistencia(LocalDateTime.parse("2019-10-20T06:30:00"), LocalDateTime.parse("2019-10-20T17:30:00"))));
-
-        Bombero bombero3 = new Bombero(true, "Muñoz", "Av Siempre viva 123", 25426385,
-                "tiorrico11@gmail.com", LocalDateTime.parse("1991-01-25T06:30:00"), "Jorge", "03541330188",
-                new Usuario(), new Rol("Jefe de Bomberos"), Arrays.asList(), Arrays.asList(new Asistencia(LocalDateTime.parse("2019-10-20T06:30:00"), LocalDateTime.parse("2019-10-20T17:30:00"))));
-
-        bomberos.add(bombero1);
-        bomberos.add(bombero2);
-        bomberos.add(bombero3);*/
+        try {
+            fileReader = new Scanner(new File("convocatorias.csv"));
+        } catch (FileNotFoundException e) {
+            return;
+        }
+        while (fileReader.hasNextLine()) {
+            String line = fileReader.nextLine();
+            String[] campos = line.split(",");
+            Convocatoria convocatoria = new Convocatoria(Boolean.parseBoolean(campos[0]), LocalDateTime.parse(campos[1]),
+                    LocalDateTime.parse(campos[2]), getBomberoFromDni(campos[3]));
+            convocatorias.add(convocatoria);
+        }
     }
 
     @Override
     public List<Bombero> getAllBomberosActivos() {
-
         return bomberos;
     }
 
@@ -72,5 +67,24 @@ public class DatabaseServiceImpl implements DatabaseService {
         return bomberosFinder;
     }
 
+    @Override
+    public List<Convocatoria> getConvocatoriaFromBombero(Bombero bombero) {
+        List<Convocatoria> convocatoriasBombero = new ArrayList<>();
+        for (Convocatoria convocatoria: convocatorias) {
+            if(convocatoria.getBombero().equals(bombero)){
+                convocatoriasBombero.add(convocatoria);
+            }
+        }
+        return convocatoriasBombero;
+    }
+
+    private Bombero getBomberoFromDni(String dni){
+        for (Bombero bombero : bomberos) {
+            if(("" + bombero.getDni()).equals(dni)){
+                return bombero;
+            }
+        }
+        return null;
+    }
 
 }
