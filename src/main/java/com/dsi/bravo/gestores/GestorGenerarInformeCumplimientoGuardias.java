@@ -50,7 +50,7 @@ public class GestorGenerarInformeCumplimientoGuardias {
     public void tomarBomberosSeleccionados(List<String> dniList){
         List<Bombero> bomberosList = databaseService.getBomberosFromList(dniList);
         for (Bombero bombero : bomberosList) {
-
+            bombero.obtenerConvocatoriasConfirmadas();
         }
     }
 }

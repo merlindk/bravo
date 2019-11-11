@@ -72,7 +72,6 @@ public class Bombero {
     }
 
     public void obtenerConvocatoriasConfirmadas() {
-
     }
 
     public void obtenerDisponibilades() {
