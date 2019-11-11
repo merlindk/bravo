@@ -27,8 +27,8 @@ public class Estado {
 
     }
 
-    public void esEnCurso() {
-
+    public boolean esEnCurso() {
+        return nombre.equals("EnCurso"); //TODO horrible
     }
 
     public void esPendienteDeConfirmacion() {

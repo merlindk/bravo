@@ -33,8 +33,8 @@ public class Convocatoria {
 
     }
 
-    public void estaEnPeriodo() {
-
+    public boolean estaEnPeriodo(LocalDateTime fechaInicio, LocalDateTime fechaFin) {
+        return fechaInicio.isBefore(fechaHora) && fechaFin.isAfter(fechaHora);
     }
 
     public Bombero getBombero() {

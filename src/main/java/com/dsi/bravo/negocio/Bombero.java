@@ -3,7 +3,10 @@ package com.dsi.bravo.negocio;
 
 import com.dsi.bravo.auth.Usuario;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Bombero {
@@ -43,8 +46,13 @@ public class Bombero {
         this.asistencias = asistencias;
     }
 
-    public void buscarAsistenciasEnFecha() {
-
+    public List<Asistencia> buscarAsistenciasEnFecha(LocalDateTime fechaHora) {
+        List<Asistencia> asistenciasEnFecha = new ArrayList<>();
+        for (Asistencia asistencia : asistencias) {
+            if(asistencia.esDeFechaYGuardiaEnCurso(fechaHora))
+            asistenciasEnFecha.add(asistencia);
+        }
+        return asistenciasEnFecha;
     }
 
     public void calcularPorcentajeAsistenciaEfectiva() {
@@ -67,11 +75,24 @@ public class Bombero {
         return null;
     }
 
-    public void obtenerAsistenciasEfectivas() {
-
+    public int obtenerAsistenciasEfectivas(List<Convocatoria> convocatorias) {
+        List<Asistencia> asistencias = null;
+        for (Convocatoria convocatoria: convocatorias) {
+            // TODO Mejorar el pisado de asistencias, (una asistencia = una convocatoria?)
+            asistencias = buscarAsistenciasEnFecha(convocatoria.getFechaHora());
+        }
+        return asistencias.toArray().length;
     }
 
-    public void obtenerConvocatoriasConfirmadas() {
+    public List<Convocatoria> obtenerConvocatoriasConfirmadas(List<Convocatoria> convocatorias, LocalDate fechaDesde, LocalDate fechaHasta) {
+        List<Convocatoria> convocatoriasConfirmadas = new ArrayList<>();
+        for (Convocatoria convocatoria: convocatorias) {
+            if (convocatoria.estaConfirmada()
+                    && convocatoria.estaEnPeriodo(fechaDesde.atStartOfDay(), fechaHasta.atTime(LocalTime.MAX))) {
+                convocatoriasConfirmadas.add(convocatoria);
+            }
+        }
+        return convocatoriasConfirmadas;
     }
 
     public void obtenerDisponibilades() {

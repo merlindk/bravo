@@ -22,12 +22,13 @@ public class Asistencia {
         this.fechaHoraSalida = fechaHoraSalida;
     }
 
-    public void esDeFechaYGuardiaEnCurso() {
-
+    public boolean esDeFechaYGuardiaEnCurso(LocalDateTime fechaHora) {
+        boolean enPeriodo = fechaHoraLlegada.isBefore(fechaHora) && fechaHoraSalida.isAfter(fechaHora);
+        return enPeriodo && estaEnCurso();
     }
 
-    public void estaEnCurso() {
-
+    public boolean estaEnCurso() {
+        return guardiaBombero.esEstadoEnCurso();
     }
 
     public void obtenerAsistenciaAbierta() {

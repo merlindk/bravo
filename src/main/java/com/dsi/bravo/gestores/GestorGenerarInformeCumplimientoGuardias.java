@@ -1,7 +1,9 @@
 package com.dsi.bravo.gestores;
 
 
+import com.dsi.bravo.negocio.Asistencia;
 import com.dsi.bravo.negocio.Bombero;
+import com.dsi.bravo.negocio.Convocatoria;
 import com.dsi.bravo.services.persistance.DatabaseService;
 import com.dsi.bravo.soporte.Row;
 import org.slf4j.Logger;
@@ -10,7 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -20,6 +25,8 @@ public class GestorGenerarInformeCumplimientoGuardias {
 
     private LocalDate fechaDesde;
     private LocalDate fechaHasta;
+    private List<Bombero> bomberosList;
+    private List<List<Convocatoria>> convocatoriasConfirmadas;
 
     private DatabaseService databaseService;
 
@@ -48,9 +55,23 @@ public class GestorGenerarInformeCumplimientoGuardias {
 
 
     public void tomarBomberosSeleccionados(List<String> dniList){
-        List<Bombero> bomberosList = databaseService.getBomberosFromList(dniList);
+        bomberosList = databaseService.getBomberosFromList(dniList);
+        buscarYContarConvocatoriasConfirmadas();
+        buscarYContarConvocatoriasEfectivas();
+    }
+
+    private void buscarYContarConvocatoriasEfectivas() {
+        for (int i = 0; i < bomberosList.size(); i++) {
+            Bombero bombero = bomberosList.get(i);
+            int countAsistencias = bombero.obtenerAsistenciasEfectivas(convocatoriasConfirmadas.get(i));
+        }
+    }
+
+    private void buscarYContarConvocatoriasConfirmadas() {
+        // TODO Por ahi mejor sacar este doble array y convertirlo en un contador simple.
+        convocatoriasConfirmadas = new ArrayList<>();
         for (Bombero bombero : bomberosList) {
-            bombero.obtenerConvocatoriasConfirmadas();
+            convocatoriasConfirmadas.add(bombero.obtenerConvocatoriasConfirmadas(databaseService.getConvocatoriaFromBombero(bombero), fechaDesde, fechaHasta));
         }
     }
 }

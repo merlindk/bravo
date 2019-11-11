@@ -115,8 +115,8 @@ public class GuardiaBombero {
 
     }
 
-    public void esEstadoEnCurso() {
-
+    public boolean esEstadoEnCurso() {
+        return estado.esEnCurso();
     }
 
     public void finalizar() {
