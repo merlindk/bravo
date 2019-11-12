@@ -36,6 +36,7 @@ public class PantallaGenerarInformeCumplimientoGuardias implements Initializable
     public DatePicker selFechaHasta;
     public Button btnSelFechas;
     public AnchorPane chartPane;
+    public AnchorPane tablePane;
     private GestorGenerarInformeCumplimientoGuardias gestorGenerarInformeCumplimientoGuardias;
     private AyudantePantalla ayudantePantalla;
     private ObservableList<Row> listaBomberos = FXCollections.observableArrayList();
@@ -46,6 +47,7 @@ public class PantallaGenerarInformeCumplimientoGuardias implements Initializable
         chckTblBomberos.setItems(listaBomberos);
         selFechaDesde.setValue(LocalDate.parse("1970-01-01"));
         selFechaHasta.setValue(LocalDate.now());
+        prepararChart();
     }
 
     public void seleccionarFechas(ActionEvent actionEvent) {
@@ -64,8 +66,7 @@ public class PantallaGenerarInformeCumplimientoGuardias implements Initializable
         listaBomberos.clear();
         listaBomberos.addAll(filasBomberos);
 
-        chckTblBomberos.setDisable(false);
-        chckTblBomberos.setVisible(true);
+        tablePane.setVisible(true);
 
     }
 
@@ -75,31 +76,31 @@ public class PantallaGenerarInformeCumplimientoGuardias implements Initializable
     }
 
     public void generarReporte(ActionEvent actionEvent) {
+        chartPane.setVisible(true);
         Collection<Integer> checkeadosIndexes = chckTblBomberos.getCheckModel().getCheckedIndices();
         List<String> dniList = new ArrayList<>();
         checkeadosIndexes.forEach((i) -> dniList.add(chckTblBomberos.getCheckModel().getItem(i).getColumnaDNI()));
         List<Resultado> resultados = gestorGenerarInformeCumplimientoGuardias.tomarBomberosSeleccionados(dniList);
 
-        prepararChart();
+        listaChart.clear();
         cargarDatos(resultados);
 
     }
 
     private void prepararChart(){
-        CategoryAxis xAxis    = new CategoryAxis();
+        CategoryAxis xAxis = new CategoryAxis();
         xAxis.setLabel("Bombero");
 
         NumberAxis yAxis = new NumberAxis();
         yAxis.setLabel("Cumplimiento");
         BarChart<String, Number> barChart = new BarChart<>(xAxis, yAxis);
 
-
-
         XYChart.Series<String, Number> dataSeries1 = new XYChart.Series<>();
         dataSeries1.setName("Cumplimiento X Bombero");
 
         dataSeries1.setData(listaChart);
         barChart.getData().add(dataSeries1);
+        barChart.setAnimated(false); // Si queres la animacion revisa bien que ande el cuadro
         chartPane.getChildren().add(barChart);
     }
 
