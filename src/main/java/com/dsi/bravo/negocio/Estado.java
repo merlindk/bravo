@@ -11,8 +11,8 @@ public class Estado {
     private String descripcion;
     private String nombre;
 
-    public Estado() {
-
+    public Estado(String nombre) {
+        this.nombre = nombre;
     }
 
     public void esAmbitoGuardia() {

@@ -1,10 +1,7 @@
 package com.dsi.bravo.services.persistance.impl;
 
 import com.dsi.bravo.auth.Usuario;
-import com.dsi.bravo.negocio.Asistencia;
-import com.dsi.bravo.negocio.Bombero;
-import com.dsi.bravo.negocio.Convocatoria;
-import com.dsi.bravo.negocio.Rol;
+import com.dsi.bravo.negocio.*;
 import com.dsi.bravo.services.persistance.DatabaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,7 +31,8 @@ public class DatabaseServiceImpl implements DatabaseService {
             Bombero bombero = new Bombero(Boolean.parseBoolean(campos[0]), campos[1], campos[2], Integer.parseInt(campos[3]),
                     campos[4], LocalDateTime.parse(campos[5]), campos[6], campos[7],
                     new Usuario(), new Rol(campos[8]), Arrays.asList(),
-                    Arrays.asList(new Asistencia(LocalDateTime.parse(campos[9]), LocalDateTime.parse(campos[10]))));
+                    Arrays.asList(new Asistencia(LocalDateTime.parse(campos[9]), LocalDateTime.parse(campos[10]),
+                            new GuardiaBombero(new Estado("EnCurso")))));
             bomberos.add(bombero);
         }
         try {

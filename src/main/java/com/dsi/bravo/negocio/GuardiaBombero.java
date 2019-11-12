@@ -19,8 +19,8 @@ public class GuardiaBombero {
     private TipoGuardia tipoGuardia;
     private DetalleGuardiaBombero detalleGuardiaBombero;
 
-    public GuardiaBombero() {
-
+    public GuardiaBombero(Estado estado) {
+        this.estado = estado;
     }
 
     public LocalDateTime getHoraDesde() {

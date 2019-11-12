@@ -17,9 +17,10 @@ public class Asistencia {
 
     }
 
-    public Asistencia(LocalDateTime fechaHoraLlegada, LocalDateTime fechaHoraSalida) {
+    public Asistencia(LocalDateTime fechaHoraLlegada, LocalDateTime fechaHoraSalida, GuardiaBombero guardia) {
         this.fechaHoraLlegada = fechaHoraLlegada;
         this.fechaHoraSalida = fechaHoraSalida;
+        this.guardiaBombero = guardia;
     }
 
     public boolean esDeFechaYGuardiaEnCurso(LocalDateTime fechaHora) {
