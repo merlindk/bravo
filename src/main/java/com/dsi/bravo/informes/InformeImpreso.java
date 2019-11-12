@@ -26,10 +26,6 @@ public class InformeImpreso {
 
     }
 
-    public void finalize() throws Throwable {
-
-    }
-
     /**
      * @param bombero
      */

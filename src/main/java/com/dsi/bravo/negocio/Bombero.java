@@ -24,6 +24,7 @@ public class Bombero {
     private Rol rol;
     private List<Disponibilidad> disponibilidades;
     private List<Asistencia> asistencias;
+    private transient List<Convocatoria> convocatoriasConfirmadas;
 
     public Bombero() {
 
@@ -46,65 +47,25 @@ public class Bombero {
         this.asistencias = asistencias;
     }
 
-    public List<Asistencia> buscarAsistenciasEnFecha(LocalDateTime fechaHora) {
-        List<Asistencia> asistenciasEnFecha = new ArrayList<>();
-        for (Asistencia asistencia : asistencias) {
-            if(asistencia.esDeFechaYGuardiaEnCurso(fechaHora))
-            asistenciasEnFecha.add(asistencia);
+    public int obtenerAsistenciasEfectivas() {
+        int contador = 0;
+        for (Convocatoria convocatoria : convocatoriasConfirmadas) {
+            for (Asistencia asistencia : asistencias) {
+                if (asistencia.esDeFechaYGuardiaEnCurso(convocatoria.getFechaHora()))
+                    contador++;
+            }
         }
-        return asistenciasEnFecha;
+        return contador;
     }
 
-    public void calcularPorcentajeAsistenciaEfectiva() {
-
-    }
-
-    public void contarAsistenciasEfectivas() {
-
-    }
-
-    public void contarConvocatoriasConfirmadas() {
-
-    }
-
-    public void esDniBomberoYActivo() {
-
-    }
-
-    public String mostrarAsistencias() {
-        return null;
-    }
-
-    public int obtenerAsistenciasEfectivas(List<Convocatoria> convocatorias) {
-        List<Asistencia> asistencias = null;
-        for (Convocatoria convocatoria: convocatorias) {
-            // TODO Mejorar el pisado de asistencias, (una asistencia = una convocatoria?)
-            asistencias = buscarAsistenciasEnFecha(convocatoria.getFechaHora());
-        }
-        return asistencias.toArray().length;
-    }
-
-    public List<Convocatoria> obtenerConvocatoriasConfirmadas(List<Convocatoria> convocatorias, LocalDate fechaDesde, LocalDate fechaHasta) {
-        List<Convocatoria> convocatoriasConfirmadas = new ArrayList<>();
-        for (Convocatoria convocatoria: convocatorias) {
+    public void obtenerConvocatoriasConfirmadas(List<Convocatoria> convocatorias, LocalDate fechaDesde, LocalDate fechaHasta) {
+        convocatoriasConfirmadas = new ArrayList<>();
+        for (Convocatoria convocatoria : convocatorias) {
             if (convocatoria.estaConfirmada()
                     && convocatoria.estaEnPeriodo(fechaDesde.atStartOfDay(), fechaHasta.atTime(LocalTime.MAX))) {
                 convocatoriasConfirmadas.add(convocatoria);
             }
         }
-        return convocatoriasConfirmadas;
-    }
-
-    public void obtenerDisponibilades() {
-
-    }
-
-    public void registrarIngresos() {
-
-    }
-
-    public void validarHorarios() {
-
     }
 
     public boolean isActivo() {
@@ -201,6 +162,14 @@ public class Bombero {
 
     public void setAsistencias(List<Asistencia> asistencias) {
         this.asistencias = asistencias;
+    }
+
+    public List<Convocatoria> getConvocatorias() {
+        return convocatoriasConfirmadas;
+    }
+
+    public void setConvocatorias(List<Convocatoria> convocatorias) {
+        this.convocatoriasConfirmadas = convocatorias;
     }
 
     @Override

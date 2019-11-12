@@ -26,10 +26,6 @@ public class InformeArchivoPDF {
 
     }
 
-    public void finalize() throws Throwable {
-
-    }
-
     /**
      * @param bombero
      */

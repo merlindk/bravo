@@ -60,7 +60,7 @@ public class DatabaseServiceImpl implements DatabaseService {
     public List<Bombero> getBomberosFromList(List<String> bomberosSeleccionadosDni) {
         List<Bombero> bomberosFinder = new ArrayList<>();
         for (Bombero bombero : bomberos) {
-            if (bomberosSeleccionadosDni.contains(bombero.getDni())) {
+            if (bomberosSeleccionadosDni.contains(String.valueOf(bombero.getDni()))) {
                 bomberosFinder.add(bombero);
             }
         }

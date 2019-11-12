@@ -26,10 +26,6 @@ public class InformeArchivoExcel {
 
     }
 
-    public void finalize() throws Throwable {
-
-    }
-
     /**
      * @param bombero
      */
