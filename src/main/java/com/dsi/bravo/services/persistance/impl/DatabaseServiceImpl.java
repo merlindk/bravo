@@ -19,6 +19,31 @@ public class DatabaseServiceImpl implements DatabaseService {
 
     @Autowired
     public DatabaseServiceImpl() {
+        readBombero();
+        readConvocatoria();
+    }
+
+    private void readConvocatoria(){
+        Scanner fileReader;
+        Bombero bombero = null;
+        try {
+            fileReader = new Scanner(new File("convocatorias.csv"));
+        } catch (FileNotFoundException e) {
+            return;
+        }
+        while (fileReader.hasNextLine()) {
+            String line = fileReader.nextLine();
+            String[] campos = line.split(",");
+            if(bombero == null || bombero.getDni() != Integer.parseInt(campos[0])) {
+                bombero = getBomberoFromDni(campos[0]);
+            }
+            Convocatoria convocatoria = new Convocatoria(Boolean.parseBoolean(campos[1]), LocalDateTime.parse(campos[2]),
+                    LocalDateTime.parse(campos[3]), bombero);
+            convocatorias.add(convocatoria);
+        }
+    }
+
+    private void readBombero(){
         Scanner fileReader;
         try {
             fileReader = new Scanner(new File("bomberos.csv"));
@@ -28,25 +53,38 @@ public class DatabaseServiceImpl implements DatabaseService {
         while (fileReader.hasNextLine()) {
             String line = fileReader.nextLine();
             String[] campos = line.split(",");
+            List<Asistencia> asistencias = readAsistencia(campos[3]);
             Bombero bombero = new Bombero(Boolean.parseBoolean(campos[0]), campos[1], campos[2], Integer.parseInt(campos[3]),
                     campos[4], LocalDateTime.parse(campos[5]), campos[6], campos[7],
-                    new Usuario(), new Rol(campos[8]), Arrays.asList(),
-                    Arrays.asList(new Asistencia(LocalDateTime.parse(campos[9]), LocalDateTime.parse(campos[10]),
-                            new GuardiaBombero(new Estado("EnCurso")))));
+                    new Usuario(), new Rol(campos[8]), Arrays.asList(), asistencias);
             bomberos.add(bombero);
         }
+    }
+
+    private List<Asistencia> readAsistencia(String bombero){
+        Scanner asistenciasReader;
+        List<Asistencia> asistencias = new ArrayList<>();
+        int wasFound = 0;
         try {
-            fileReader = new Scanner(new File("convocatorias.csv"));
+            asistenciasReader = new Scanner(new File("asistencias.csv"));
         } catch (FileNotFoundException e) {
-            return;
+            return null;
         }
-        while (fileReader.hasNextLine()) {
-            String line = fileReader.nextLine();
-            String[] campos = line.split(",");
-            Convocatoria convocatoria = new Convocatoria(Boolean.parseBoolean(campos[0]), LocalDateTime.parse(campos[1]),
-                    LocalDateTime.parse(campos[2]), getBomberoFromDni(campos[3]));
-            convocatorias.add(convocatoria);
+        while (asistenciasReader.hasNextLine()) {
+            if (wasFound == 2){
+                break;
+            }
+            String lineAsistencias = asistenciasReader.nextLine();
+            String[] camposAsistencias = lineAsistencias.split(",");
+            if(camposAsistencias[0].equals(bombero)){
+                asistencias.add(new Asistencia(LocalDateTime.parse(camposAsistencias[1]), LocalDateTime.parse(camposAsistencias[2]),
+                        new GuardiaBombero(new Estado("EnCurso"))));
+                wasFound = 1;
+            }else if (wasFound == 1){
+                wasFound = 2;
+            }
         }
+        return asistencias;
     }
 
     @Override
