@@ -8,6 +8,7 @@ import com.dsi.bravo.directores.DirectorConstructorInformeGuardias;
 import com.dsi.bravo.externos.ImpresoraPDF;
 import com.dsi.bravo.informes.InformeArchivoPDF;
 import com.dsi.bravo.negocio.Bombero;
+import com.dsi.bravo.negocio.Convocatoria;
 import com.dsi.bravo.pantallas.PantallaMostrarReporteCumplimientoDeGuardias;
 import com.dsi.bravo.services.persistance.DatabaseService;
 import com.dsi.bravo.soporte.Resultado;
@@ -61,7 +62,6 @@ public class GestorGenerarInformeCumplimientoGuardias {
 
     public void tomarBomberosSeleccionados(List<String> dniList) {
         List<Bombero> bomberosList = databaseService.getBomberosFromList(dniList);
-        buscarYContarConvocatoriasConfirmadas(bomberosList);
         resultados = buscarYContarConvocatoriasEfectivas(bomberosList);
     }
 
@@ -89,9 +89,10 @@ public class GestorGenerarInformeCumplimientoGuardias {
     private List<Resultado> buscarYContarConvocatoriasEfectivas(List<Bombero> bomberosList) {
         List<Resultado> resultados = new ArrayList<>();
         for (Bombero bombero : bomberosList) {
-            int countAsistencias = bombero.obtenerAsistenciasEfectivas();
-            int convocatorias = bombero.getConvocatorias().size();
-            float cumplimiento = (convocatorias != 0) ? countAsistencias / bombero.getConvocatorias().size() : 0;
+            List<Convocatoria> convocatoriasBombero = databaseService.getConvocatoriaFromBombero(bombero);
+            int countAsistencias = bombero.obtenerAsistenciasEfectivas(convocatoriasBombero);
+            int convocatorias = buscarYContarConvocatoriasConfirmadas(bombero, convocatoriasBombero);
+            float cumplimiento = (countAsistencias != 0) ? (float) convocatorias / countAsistencias : 0;
             cumplimiento *= 100;
             String nombre = bombero.getNombre();
             String apellido = bombero.getApellido();
@@ -100,10 +101,9 @@ public class GestorGenerarInformeCumplimientoGuardias {
         return resultados;
     }
 
-    private void buscarYContarConvocatoriasConfirmadas(List<Bombero> bomberosList) {
-        for (Bombero bombero : bomberosList) {
-            bombero.obtenerConvocatoriasConfirmadas(databaseService.getConvocatoriaFromBombero(bombero), fechaDesde, fechaHasta);
-        }
+    private int buscarYContarConvocatoriasConfirmadas(Bombero bombero, List<Convocatoria> convocatoriasBombero) {
+        List<Convocatoria> convocatorias = bombero.obtenerConvocatoriasConfirmadas(convocatoriasBombero, fechaDesde, fechaHasta);
+        return convocatorias.size();
     }
 
     @Autowired

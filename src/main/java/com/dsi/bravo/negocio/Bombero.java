@@ -24,7 +24,6 @@ public class Bombero {
     private Rol rol;
     private List<Disponibilidad> disponibilidades;
     private List<Asistencia> asistencias;
-    private transient List<Convocatoria> convocatoriasConfirmadas;
 
     public Bombero() {
 
@@ -47,9 +46,9 @@ public class Bombero {
         this.asistencias = asistencias;
     }
 
-    public int obtenerAsistenciasEfectivas() {
+    public int obtenerAsistenciasEfectivas(List<Convocatoria> convocatorias) {
         int contador = 0;
-        for (Convocatoria convocatoria : convocatoriasConfirmadas) {
+        for (Convocatoria convocatoria : convocatorias) {
             for (Asistencia asistencia : asistencias) {
                 if (asistencia.esDeFechaYGuardiaEnCurso(convocatoria.getFechaHora()))
                     contador++;
@@ -58,14 +57,15 @@ public class Bombero {
         return contador;
     }
 
-    public void obtenerConvocatoriasConfirmadas(List<Convocatoria> convocatorias, LocalDate fechaDesde, LocalDate fechaHasta) {
-        convocatoriasConfirmadas = new ArrayList<>();
+    public List<Convocatoria> obtenerConvocatoriasConfirmadas(List<Convocatoria> convocatorias, LocalDate fechaDesde, LocalDate fechaHasta) {
+        List<Convocatoria> convocatoriasConfirmadas = new ArrayList<>();
         for (Convocatoria convocatoria : convocatorias) {
             if (convocatoria.estaConfirmada()
                     && convocatoria.estaEnPeriodo(fechaDesde.atStartOfDay(), fechaHasta.atTime(LocalTime.MAX))) {
                 convocatoriasConfirmadas.add(convocatoria);
             }
         }
+        return convocatoriasConfirmadas;
     }
 
     public boolean isActivo() {
@@ -162,14 +162,6 @@ public class Bombero {
 
     public void setAsistencias(List<Asistencia> asistencias) {
         this.asistencias = asistencias;
-    }
-
-    public List<Convocatoria> getConvocatorias() {
-        return convocatoriasConfirmadas;
-    }
-
-    public void setConvocatorias(List<Convocatoria> convocatorias) {
-        this.convocatoriasConfirmadas = convocatorias;
     }
 
     @Override
