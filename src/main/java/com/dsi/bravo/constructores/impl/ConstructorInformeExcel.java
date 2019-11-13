@@ -3,8 +3,11 @@ package com.dsi.bravo.constructores.impl;
 
 import com.dsi.bravo.constructores.IConstructorInformeGuardias;
 import com.dsi.bravo.informes.InformeArchivoExcel;
+import com.dsi.bravo.soporte.Resultado;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * This class (a) constructs and assembles parts of the product by implementing
@@ -17,18 +20,7 @@ import java.util.Date;
  */
 public class ConstructorInformeExcel implements IConstructorInformeGuardias {
 
-    public ConstructorInformeExcel() {
-
-    }
-
-    public void agregarBombero() {
-
-    }
-
-    /**
-     * @param cumpimientoGuardia
-     */
-    public void construirCuerpo(String[][] cumpimientoGuardia) {
+    public void construirCuerpo(List<Resultado> resultados) {
 
     }
 
@@ -36,7 +28,7 @@ public class ConstructorInformeExcel implements IConstructorInformeGuardias {
      * @param fechaInicio
      * @param fechaFin
      */
-    public void construirEncabezado(Date fechaInicio, Date fechaFin) {
+    public void construirEncabezado(LocalDate fechaInicio, LocalDate fechaFin) {
 
     }
 
@@ -48,7 +40,7 @@ public class ConstructorInformeExcel implements IConstructorInformeGuardias {
      * @param usuario
      * @param fechaHora
      */
-    public void construirPie(String usuario, Date fechaHora) {
+    public void construirPie(String usuario, LocalDateTime fechaHora) {
 
     }
 

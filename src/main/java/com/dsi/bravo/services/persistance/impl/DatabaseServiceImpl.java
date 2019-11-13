@@ -9,7 +9,10 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
 
 @Service
 public class DatabaseServiceImpl implements DatabaseService {
@@ -23,7 +26,7 @@ public class DatabaseServiceImpl implements DatabaseService {
         readConvocatoria();
     }
 
-    private void readConvocatoria(){
+    private void readConvocatoria() {
         Scanner fileReader;
         Bombero bombero = null;
         try {
@@ -34,7 +37,7 @@ public class DatabaseServiceImpl implements DatabaseService {
         while (fileReader.hasNextLine()) {
             String line = fileReader.nextLine();
             String[] campos = line.split(",");
-            if(bombero == null || bombero.getDni() != Integer.parseInt(campos[0])) {
+            if (bombero == null || bombero.getDni() != Integer.parseInt(campos[0])) {
                 bombero = getBomberoFromDni(campos[0]);
             }
             Convocatoria convocatoria = new Convocatoria(Boolean.parseBoolean(campos[1]), LocalDateTime.parse(campos[2]),
@@ -43,7 +46,7 @@ public class DatabaseServiceImpl implements DatabaseService {
         }
     }
 
-    private void readBombero(){
+    private void readBombero() {
         Scanner fileReader;
         try {
             fileReader = new Scanner(new File("bomberos.csv"));
@@ -61,7 +64,7 @@ public class DatabaseServiceImpl implements DatabaseService {
         }
     }
 
-    private List<Asistencia> readAsistencia(String bombero){
+    private List<Asistencia> readAsistencia(String bombero) {
         Scanner asistenciasReader;
         List<Asistencia> asistencias = new ArrayList<>();
         int wasFound = 0;
@@ -71,16 +74,16 @@ public class DatabaseServiceImpl implements DatabaseService {
             return null;
         }
         while (asistenciasReader.hasNextLine()) {
-            if (wasFound == 2){
+            if (wasFound == 2) {
                 break;
             }
             String lineAsistencias = asistenciasReader.nextLine();
             String[] camposAsistencias = lineAsistencias.split(",");
-            if(camposAsistencias[0].equals(bombero)){
+            if (camposAsistencias[0].equals(bombero)) {
                 asistencias.add(new Asistencia(LocalDateTime.parse(camposAsistencias[1]), LocalDateTime.parse(camposAsistencias[2]),
                         new GuardiaBombero(new Estado("EnCurso"))));
                 wasFound = 1;
-            }else if (wasFound == 1){
+            } else if (wasFound == 1) {
                 wasFound = 2;
             }
         }
@@ -106,17 +109,17 @@ public class DatabaseServiceImpl implements DatabaseService {
     @Override
     public List<Convocatoria> getConvocatoriaFromBombero(Bombero bombero) {
         List<Convocatoria> convocatoriasBombero = new ArrayList<>();
-        for (Convocatoria convocatoria: convocatorias) {
-            if(convocatoria.getBombero().equals(bombero)){
+        for (Convocatoria convocatoria : convocatorias) {
+            if (convocatoria.getBombero().equals(bombero)) {
                 convocatoriasBombero.add(convocatoria);
             }
         }
         return convocatoriasBombero;
     }
 
-    private Bombero getBomberoFromDni(String dni){
+    private Bombero getBomberoFromDni(String dni) {
         for (Bombero bombero : bomberos) {
-            if(("" + bombero.getDni()).equals(dni)){
+            if (("" + bombero.getDni()).equals(dni)) {
                 return bombero;
             }
         }

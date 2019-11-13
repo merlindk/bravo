@@ -1,22 +1,21 @@
 package com.dsi.bravo.auth;
 
-/**
- * @author Merlin
- * @version 1.0
- * @created 04-Nov-2019 10:20:59 PM
- */
+import org.springframework.stereotype.Service;
+
+@Service
 public class Sesion {
 
-    public Usuario m_Usuario;
+    private Usuario usuario;
     private int fechaDesde;
     private int fechaHasta;
 
     public Sesion() {
-
+        usuario = new Usuario();
+        usuario.setNombre("Merlin Nuñez");
     }
 
     public Usuario getUsuario() {
-        return null;
+        return usuario;
     }
 
     public void obtenerNombreUsuario() {

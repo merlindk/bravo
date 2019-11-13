@@ -1,90 +1,50 @@
 package com.dsi.bravo.informes;
 
 
-import java.util.Date;
+import com.dsi.bravo.soporte.Resultado;
 
-/**
- * This class (a) represents the complex object under construction.
- * ConcreteBuilder builds the product's internal representation and defines the
- * process by which it's assembled, and (b) includes classes that define the
- * constituent parts, including interfaces for assembling the parts into the final
- * result.
- *
- * @author matia
- * @version 1.0
- * @created 04-Nov-2019 10:30:19 PM
- */
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class InformeArchivoPDF {
 
-    private String[] bomberos;
-    private int fechaHoraPie;
-    private String[] porcentajeBomberos;
-    private String titulo;
-    private String usuarioPie;
+    private String usuario;
+    private String fechaDesde;
+    private String fechaHasta;
+    private List<Resultado> resultados;
+    private String fechaGeneracion;
 
-    public InformeArchivoPDF() {
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public void setFechaDesde(String fechaDesde) {
+        this.fechaDesde = fechaDesde;
+    }
+
+    public void setFechaHasta(String fechaHasta) {
+        this.fechaHasta = fechaHasta;
+    }
+
+    public void setResultados(List<Resultado> resultados) {
+        this.resultados = resultados;
+    }
+
+    public void setFechaGeneracion(String fechaGeneracion) {
+        this.fechaGeneracion = fechaGeneracion;
+    }
+
+    public List<String> imprimir() {
+        List<String> aImprimir = new ArrayList<>();
+        aImprimir.add(String.format("Informe de cumplimiento de guardias - Fecha desde: %s - Fecha hasta: %s", fechaDesde, fechaHasta));
+
+        for (Resultado resultado : resultados) {
+            aImprimir.add(resultado.getNombre() + " " + resultado.getApellido() + " " + resultado.getPorcentaje());
+        }
+        aImprimir.add(String.format("Usuario: %s - Fecha generacion: %s", usuario, fechaGeneracion));
+        return aImprimir;
 
     }
 
-    /**
-     * @param bombero
-     */
-    public void addBombero(String bombero) {
-
-    }
-
-    /**
-     * @param porcentaje
-     */
-    public void addPorcentajeGuardia(String porcentaje) {
-
-    }
-
-    /**
-     * @param bombero
-     * @param porcentajeGuardias
-     */
-    public void agregarCuerpo(String bombero, String porcentajeGuardias) {
-
-    }
-
-    /**
-     * @param titulo
-     */
-    public void agregarEncabezado(String titulo) {
-
-    }
-
-    /**
-     * @param usuario
-     * @param fechaHora
-     */
-    public void agregarPie(String usuario, Date fechaHora) {
-
-    }
-
-    public String obtenerDatos() {
-        return "";
-    }
-
-    /**
-     * @param fechaHora
-     */
-    public void setFechaHoraPie(Date fechaHora) {
-
-    }
-
-    /**
-     * @param titulo
-     */
-    public void setTitulo(String titulo) {
-
-    }
-
-    /**
-     * @param usuario
-     */
-    public void setUsuarioPie(String usuario) {
-
-    }
-}//end InformeArchivoPDF
+}

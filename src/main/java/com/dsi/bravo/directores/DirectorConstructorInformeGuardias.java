@@ -2,8 +2,11 @@ package com.dsi.bravo.directores;
 
 
 import com.dsi.bravo.constructores.IConstructorInformeGuardias;
+import com.dsi.bravo.soporte.Resultado;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * This class constructs an object using the Builder interface.
@@ -20,20 +23,13 @@ public class DirectorConstructorInformeGuardias {
         this.contructor = contructor;
     }
 
-    public DirectorConstructorInformeGuardias() {
 
-    }
-
-    /**
-     * @param fechaInicio
-     * @param fechaFin
-     * @param guardiasPorBombero
-     * @param usuario
-     * @param fechaHora
-     */
-    public void construir(Date fechaInicio, Date fechaFin, String[][] guardiasPorBombero, String usuario, Date fechaHora) {
-
+    public void construir(LocalDate fechaInicio, LocalDate fechaFin, List<Resultado> resultados, String usuario, LocalDateTime fechaHora) {
+        contructor.construirInforme();
+        contructor.construirEncabezado(fechaInicio, fechaFin);
+        contructor.construirCuerpo(resultados);
+        contructor.construirPie(usuario, fechaHora);
     }
 
 
-}//end DirectorConstructorInformeGuardias
+}

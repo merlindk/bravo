@@ -1,7 +1,11 @@
 package com.dsi.bravo.constructores;
 
 
-import java.util.Date;
+import com.dsi.bravo.soporte.Resultado;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * This class specifies an abstract interface for creating parts of a Product
@@ -13,18 +17,13 @@ import java.util.Date;
  */
 public interface IConstructorInformeGuardias {
 
-    void agregarBombero();
-
-    /**
-     * @param cumpimientoGuardia
-     */
-    void construirCuerpo(String[][] cumpimientoGuardia);
+    void construirCuerpo(List<Resultado> resultados);
 
     /**
      * @param fechaInicio
      * @param fechaFin
      */
-    void construirEncabezado(Date fechaInicio, Date fechaFin);
+    void construirEncabezado(LocalDate fechaInicio, LocalDate fechaFin);
 
     void construirInforme();
 
@@ -32,5 +31,5 @@ public interface IConstructorInformeGuardias {
      * @param usuario
      * @param fechaHora
      */
-    void construirPie(String usuario, Date fechaHora);
+    void construirPie(String usuario, LocalDateTime fechaHora);
 }//end IConstructorInformeGuardias

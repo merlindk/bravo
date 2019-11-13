@@ -27,7 +27,7 @@ public class BravoApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Elecciones 2019");
-        primaryStage.setScene(new Scene(rootNode, 620, 1024));
+        primaryStage.setScene(new Scene(rootNode, 620, 620));
         primaryStage.show();
     }
 

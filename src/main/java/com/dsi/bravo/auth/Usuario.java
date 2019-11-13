@@ -7,20 +7,16 @@ package com.dsi.bravo.auth;
  */
 public class Usuario {
 
-    public Perfil perfil;
+    private Perfil perfil;
     private int contraseña;
     private int fechaAlta;
-    private int nombre;
+    private String nombre;
 
-    public Usuario() {
-
+    public String getNombre() {
+        return nombre;
     }
 
-    public void getNombre() {
-
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
-
-    public void getPerfil() {
-
-    }
-}//end Usuario
+}
