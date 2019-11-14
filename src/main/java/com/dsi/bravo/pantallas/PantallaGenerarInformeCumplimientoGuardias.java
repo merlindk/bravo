@@ -4,6 +4,8 @@ import com.dsi.bravo.gestores.GestorGenerarInformeCumplimientoGuardias;
 import com.dsi.bravo.pantallas.ayudantes.AyudantePantalla;
 import com.dsi.bravo.pantallas.ayudantes.ControladorDeEscenas;
 import com.dsi.bravo.soporte.Row;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -51,10 +53,21 @@ public class PantallaGenerarInformeCumplimientoGuardias implements Initializable
         selFechaDesde.setValue(LocalDate.parse("1970-01-01"));
         selFechaHasta.setValue(LocalDate.now());
 
+        selFechaDesde.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue){
+                selFechaDesde.setValue(selFechaDesde.getConverter().fromString(selFechaDesde.getEditor().getText()));
+            }
+        });
+
+        selFechaHasta.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue){
+                selFechaHasta.setValue(selFechaHasta.getConverter().fromString(selFechaHasta.getEditor().getText()));
+            }
+        });
+
     }
 
     public void seleccionarFechas(ActionEvent actionEvent) {
-
         //Solicitamos al gestor que valide las fechas y las almacene
         if (!gestorGenerarInformeCumplimientoGuardias.tomarSeleccionFechas(selFechaDesde.getValue(), selFechaHasta.getValue())) {
             mostrarAlerta("Las fechas son incorrectas");
